@@ -1,13 +1,15 @@
 import { ManipulateType } from "dayjs";
 
 export type IPrimitiveValue = string | number;
+
 export type IStoreKey = string;
 
 export type IStoreSetValue = Set<string | number>;
 export type IStoreValue =
   | IPrimitiveValue
   | Array<string | number>
-  | IStoreSetValue;
+  | IStoreSetValue
+  | undefined;
 
 export type IStoreValueConfig = { expiresAt?: number };
 

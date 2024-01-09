@@ -72,6 +72,14 @@ export class Store {
     }
   }
 
+  size() {
+    try {
+      return { success: true, size: this.map.size };
+    } catch (e) {
+      return { success: false };
+    }
+  }
+
   clear() {
     try {
       this.map.clear();
