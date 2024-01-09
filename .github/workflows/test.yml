@@ -9,9 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: oven-sh/setup-bun@v1
 
-      # run any `bun` or `bunx` command
-      - run: cd server
-      - run: bun install
-      - run: bun test
+      - uses: oven-sh/setup-bun@v1.1.1
+
+      - name: Installing and Running Tests
+        run: |
+          cd server
+          bun install
+          bun test
