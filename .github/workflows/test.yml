@@ -13,7 +13,7 @@ jobs:
       - uses: oven-sh/setup-bun@v1.1.1
 
       - name: Installing and Running Tests
-      - run: |
+        run: |
           cd server
           bun install
           bun test
