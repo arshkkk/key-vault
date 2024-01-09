@@ -24,6 +24,7 @@ class StoreSet {
       if (!success || !set) throw new Error();
 
       set.add(value);
+      this.store.set(key, set);
 
       return { success: true };
     } catch (e) {
@@ -71,4 +72,4 @@ class StoreSet {
   }
 }
 
-const storeSet = new StoreSet(store);
+export const setStore = new StoreSet(store);
