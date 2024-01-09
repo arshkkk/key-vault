@@ -1,8 +1,12 @@
 import { test, expect, beforeEach, beforeAll } from "bun:test";
 import { store } from "../service";
+import { IStoreValue } from "../interfaces";
 
 beforeAll(() => store.clear());
-beforeEach(() => store.clear());
+beforeEach(() => {
+  store.clear();
+  store.set("key", "value");
+});
 
 test("store:set", () => {
   // basic set
@@ -16,7 +20,7 @@ test("store:set", () => {
 });
 
 test("store:has", () => {
-  store.set("key", "value");
+  // store.set("key", "value");
   const val = store.has("key");
   expect(val.success).toBe(true);
   expect(val.exists).toBe(true);
@@ -27,7 +31,7 @@ test("store:has", () => {
 });
 
 test("store:size", () => {
-  store.set("key", "value");
+  // store.set("key", "value");
   const val = store.size();
   expect(val.success).toBe(true);
   expect(val.size).toBe(1);
@@ -46,12 +50,18 @@ test("store:size", () => {
 });
 
 test("store:get", () => {
-  store.set("key", "value");
+  // store.set("key", "value");
   const val = store.get("key");
   expect(val.success).toBe(true);
   expect(val.value).toBe("value");
 
   const notExists = store.get("key-notExists");
   expect(notExists.success).toBe(true);
-  expect(notExists.value).toBe(undefined);
+  expect(notExists.value).toBeUndefined();
+});
+
+test("store:clear", () => {
+  expect(store.size().size).toBe(1);
+  store.clear();
+  expect(store.size().size).toBe(0);
 });
