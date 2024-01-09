@@ -1,10 +1,9 @@
 import {
-  IStoreKey,
-  IPrimitiveValue,
-  IStoreSetValueConfig,
-  IStoreValueConfig,
-  IStoreValueItem,
   IStoreDeleteConfig,
+  IStoreKey,
+  IStoreSetValueConfig,
+  IStoreValue,
+  IStoreValueItem,
 } from "../../interfaces";
 import dayjs from "dayjs";
 
@@ -12,10 +11,6 @@ export class Store {
   private readonly map: Map<string, IStoreValueItem>;
   constructor() {
     this.map = new Map<string, IStoreValueItem>();
-  }
-
-  private sanitizeValue(value: IPrimitiveValue) {
-    return value;
   }
 
   private isExpired(value: IStoreValueItem) {
@@ -27,8 +22,13 @@ export class Store {
 
   get(key: IStoreKey) {
     try {
-      const value = this.map.get(key)?.v;
-      return { value, success: true };
+      const storeItem = this.map.get(key);
+      if (storeItem && this.isExpired(storeItem)) {
+        this.map.delete(key);
+        return { value: undefined, success: true };
+      }
+
+      return { value: storeItem?.v, success: true };
     } catch (e) {
       return { success: false, value: undefined };
     }
@@ -36,14 +36,14 @@ export class Store {
 
   has(key: IStoreKey) {
     try {
-      const value = this.map.get(key);
-      return { value, success: true };
+      const exists = this.map.has(key);
+      return { exists, success: true };
     } catch (e) {
-      return { success: false, value: undefined };
+      return { success: false, exists: undefined };
     }
   }
 
-  set(key: IStoreKey, value: IPrimitiveValue, config?: IStoreSetValueConfig) {
+  set(key: IStoreKey, value: IStoreValue, config?: IStoreSetValueConfig) {
     try {
       let { expiresAt, expiresIn } = config || {};
 
@@ -51,7 +51,7 @@ export class Store {
         expiresAt = dayjs().add(expiresIn.value, expiresIn.unit).valueOf();
       }
 
-      this.map.set(key, { v: this.sanitizeValue(value), c: { expiresAt } });
+      this.map.set(key, { v: value, c: { expiresAt } });
       return { success: true };
     } catch (e) {
       return { success: false };

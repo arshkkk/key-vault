@@ -15,7 +15,7 @@ class StorePrimitive {
     this.store = store;
   }
 
-  increment(key: IStoreKey, { incrementBy = 1 }: IIncrementConfig) {
+  increment(key: IStoreKey, { incrementBy = 1 }: IIncrementConfig = {}) {
     try {
       const { value = 0, success } = this.store.get(key);
       if (!success) {
@@ -31,6 +31,7 @@ class StorePrimitive {
       }
 
       if (updatedValue) {
+        this.store.set(key, updatedValue);
         return { success: true, updatedValue };
       } else {
         throw new Error();
@@ -41,4 +42,4 @@ class StorePrimitive {
   }
 }
 
-const storePrimitive = new StorePrimitive(store);
+export const primitiveStore = new StorePrimitive(store);
