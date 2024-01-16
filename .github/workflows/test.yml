@@ -10,6 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+
       - uses: oven-sh/setup-bun@v1.1.1
 
       - name: Installing and Running Tests
