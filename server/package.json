@@ -1,19 +1,20 @@
 {
-  "name": "server",
-  "module": "index.ts",
-  "type": "module",
-  "devDependencies": {
-    "@types/figlet": "^1.5.8",
-    "@types/jsonwebtoken": "^9.0.5",
-    "bun-types": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
+  "name": "app",
+  "version": "1.0.50",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "bun run --watch src/index.ts"
   },
   "dependencies": {
+    "@elysiajs/swagger": "^0.8.3",
+    "@elysiajs/trpc": "^0.8.0",
+    "@trpc/server": "^10.45.0",
     "dayjs": "^1.11.10",
-    "figlet": "^1.7.0",
-    "hono": "^3.11.12",
-    "jsonwebtoken": "^9.0.2"
-  }
+    "elysia": "latest",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "module": "../src/index.js"
 }

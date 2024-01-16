@@ -4,7 +4,7 @@ import {
   IStoreSetValueConfig,
   IStoreValue,
   IStoreValueItem,
-} from "../../interfaces";
+} from "../../../interfaces";
 import dayjs from "dayjs";
 
 export class Store {

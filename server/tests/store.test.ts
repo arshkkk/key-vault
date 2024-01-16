@@ -1,6 +1,5 @@
 import { test, expect, beforeEach, beforeAll } from "bun:test";
-import { store } from "../service";
-import { IStoreValue } from "../interfaces";
+import { store } from "../src/service";
 
 beforeAll(() => store.clear());
 beforeEach(() => {
