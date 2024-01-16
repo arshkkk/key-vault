@@ -1,0 +1,19 @@
+{
+  "name": "client",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/inquirer": "^9.0.7",
+    "bun-types": "latest",
+    "prettier": "^3.2.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@trpc/client": "^10.45.0",
+    "inquirer": "^9.2.12",
+    "nanospinner": "^1.1.0",
+    "zod": "^3.22.4"
+  }
+}

@@ -1,7 +1,11 @@
-import { store, Store } from "./store.ts";
-import { IStoreKey, IPrimitiveValue, IStoreSetValue } from "../../interfaces";
+import { store, Store } from "./store";
+import {
+  IStoreKey,
+  IPrimitiveValue,
+  IStoreSetValue,
+} from "../../../interfaces";
 
-class StoreSet {
+export class StoreSet {
   private readonly store: Store;
 
   constructor(store: Store) {

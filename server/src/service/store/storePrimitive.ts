@@ -1,14 +1,9 @@
-import { store, Store } from "./store.ts";
-import {
-  IStoreKey,
-  IPrimitiveValue,
-  IStoreDeleteConfig,
-  IStoreValueConfig,
-} from "../../interfaces";
+import { store, Store } from "./store";
+import { IStoreKey } from "../../../interfaces";
 
 type IIncrementConfig = { incrementBy?: number };
 
-class StorePrimitive {
+export class StorePrimitive {
   private readonly store: Store;
 
   constructor(store: Store) {
